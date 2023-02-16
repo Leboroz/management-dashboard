@@ -35,7 +35,7 @@ import {
   CreateProperty,
   AgentProfile,
   EditProperty,
-} from "pages/login";
+} from "pages";
 
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
@@ -116,26 +116,35 @@ function App() {
           resources={[
             {
               name: "property",
-              icon: <VillaOutlined />
+              icon: <VillaOutlined />,
+              list: AllProperties,
+              show: PropertyDetails,
+              create: CreateProperty,
+              edit: EditProperty,
             },
             {
               name: "agent",
-              icon: <PeopleAltOutlined />
+              icon: <PeopleAltOutlined />,
+              list: Agents,
+              show: AgentProfile,
             },
             {
               name: "review",
+              list: Home,
               icon: <StarOutlineRounded />
             },
             {
               name: "message",
+              list: Home,
               icon: <ChatBubbleOutline />
             },
             {
               name: "my-profile",
               options: {
                 label: 'My profile',
-              }
-              icon: <AccountCircleOutlined />
+              },
+              icon: <AccountCircleOutlined />,
+              list: MyProfile,
             },
           ]}
           Title={Title}

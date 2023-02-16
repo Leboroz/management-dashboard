@@ -7,7 +7,6 @@ const Home = () => {
     <Box>
       <Typography fontSize={25} fontWeight={700} color="#11142D">
         Dashboard
-
       </Typography>
       <Box mt="20px" display="flex" flexWrap="wrap" gap={4}>
         <PieChart
@@ -42,6 +41,7 @@ const Home = () => {
           xs: 'column',
           lg: 'row',
         }}
+        gap={4}
       >
         <TotalRevenue />
         <PropertyReferrals />

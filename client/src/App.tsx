@@ -9,6 +9,7 @@ import {
   ReadyPage,
   ErrorComponent,
 } from "@pankod/refine-mui";
+
 import {
   AccountCircleOutlined,
   ChatBubbleOutline,
@@ -16,6 +17,7 @@ import {
   StarOutlineRounded,
   VillaOutlined,
 } from '@mui/icons-material';
+
 import dataProvider from "@pankod/refine-simple-rest";
 
 import { MuiInferencer } from "@pankod/refine-inferencer/mui";
@@ -38,6 +40,7 @@ import {
 } from "pages";
 
 const axiosInstance = axios.create();
+
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
   const token = localStorage.getItem("token");
   if (request.headers) {
@@ -53,17 +56,33 @@ axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
 
 function App() {
   const authProvider: AuthProvider = {
-    login: ({ credential }: CredentialResponse) => {
+    login: async ({ credential }: CredentialResponse) => {
       const profileObj = credential ? parseJwt(credential) : null;
 
       if (profileObj) {
-        localStorage.setItem(
-          "user",
-          JSON.stringify({
-            ...profileObj,
+        const response = await axios.post('http://localhost:8080/api/v1/users',
+          {
+            name: profileObj.name,
+            email: profileObj.email,
             avatar: profileObj.picture,
-          })
-        );
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+
+        if (response.status === 200)
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              ...profileObj,
+              avatar: profileObj.picture,
+              userid: response.data._id,
+            })
+          );
+        else return Promise.reject();
       }
 
       localStorage.setItem("token", `${credential}`);

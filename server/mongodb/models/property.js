@@ -7,5 +7,9 @@ const PropertySchema = new mongoose.Schema({
   location: { type: String, required: true },
   price: { type: String, required: true },
   photo: { type: String, required: true },
-  creator: { type: mongoose.Schema.Type.ObjectId, ref: 'User' },
+  creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
 })
+
+const PropertyModel = mongoose.model('Property', PropertySchema);
+
+export default PropertyModel;

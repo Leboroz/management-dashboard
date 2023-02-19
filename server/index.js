@@ -3,8 +3,8 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 
 import connectDB from './mongodb/connect.js';
-import userRouter from './routes/user.routes';
-import propertyRouter from './routes/property.routes';
+import userRouter from './routes/user.routes.js';
+import propertyRouter from './routes/property.routes.js';
 
 dotenv.config();
 
@@ -23,7 +23,7 @@ const startServer = async () => {
   try {
     connectDB(process.env.MONGODB_URL);
 
-    app.listen(8080, () => console.log('Server started on server https://localhost:8080'))
+    app.listen(8080, () => console.log('Server started on server http://localhost:8080'))
   } catch (error) {
     console.log(error);
   }

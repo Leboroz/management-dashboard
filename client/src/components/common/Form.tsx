@@ -160,7 +160,6 @@ const Form = ({
               id='outlined-basic'
               color="info"
               variant="outlined"
-              type='number'
               {...register('location', { required: true })}
             />
           </FormControl>
@@ -196,7 +195,7 @@ const Form = ({
                   hidden
                   accept='image/*'
                   type="file"
-                  onChange={() => {
+                  onChange={(e) => {
                     //@ts-ignore
                     handleImageChange(e.target.files[0])
                   }}

@@ -63,8 +63,8 @@ export const Login: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <div>
-            <img src="./refine.svg" alt="Refine Logo" />
+          <div style={{ height: '200px', display: 'flex', alignItems: 'center', }}>
+            <img src="./brand.png" alt="Refine Logo" />
           </div>
           <Box mt={4}>
             <GoogleButton />

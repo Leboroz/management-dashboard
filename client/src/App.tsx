@@ -20,7 +20,6 @@ import {
 
 import dataProvider from "@pankod/refine-simple-rest";
 
-import { MuiInferencer } from "@pankod/refine-inferencer/mui";
 import routerProvider from "@pankod/refine-react-router-v6";
 import axios, { AxiosRequestConfig } from "axios";
 import { ColorModeContextProvider } from "contexts";
@@ -60,7 +59,7 @@ function App() {
       const profileObj = credential ? parseJwt(credential) : null;
 
       if (profileObj) {
-        const response = await axios.post('http://localhost:8080/api/v1/users',
+        const response = await axios.post('https://management-r3vp.onrender.com/api/v1/users',
           {
             name: profileObj.name,
             email: profileObj.email,
@@ -128,7 +127,7 @@ function App() {
       <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
       <RefineSnackbarProvider>
         <Refine
-          dataProvider={dataProvider("http://localhost:8080/api/v1")}
+          dataProvider={dataProvider("https://management-r3vp.onrender.com/api/v1")}
           notificationProvider={notificationProvider}
           ReadyPage={ReadyPage}
           catchAll={<ErrorComponent />}
